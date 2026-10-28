@@ -1,0 +1,349 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>롯데시네마 As-Is To-Be 비교</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600&family=Roboto:wght@400;500&display=swap">
+<style>
+:root{--ground:#F9FAFB;--paper:#fff;--line:#E1E4E8;--rule:#DCE1E7;--hov:#B8BEC7;--ink:#000;--ink2:#0E1A2B;--ink3:#3B4758;--mute:#8C8C8C;--soft:#F2F3F5;--onink:#fff;--glass:rgba(255,255,255,.62);--glass2:rgba(255,255,255,.92);--glass-line:rgba(14,26,43,.08);--glass-sh:rgba(14,26,43,.07);color-scheme:light}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--ground:#12161C;--paper:#1A2028;--line:#2A323D;--rule:#303945;--hov:#566170;--ink:#fff;--ink2:#E8ECF2;--ink3:#A9B3C1;--mute:#7C8794;--soft:#222A34;--onink:#12161C;--glass:rgba(255,255,255,.08);--glass2:rgba(255,255,255,.16);--glass-line:rgba(255,255,255,.16);--glass-sh:rgba(0,0,0,.35);color-scheme:dark}}
+:root[data-theme="dark"]{--ground:#12161C;--paper:#1A2028;--line:#2A323D;--rule:#303945;--hov:#566170;--ink:#fff;--ink2:#E8ECF2;--ink3:#A9B3C1;--mute:#7C8794;--soft:#222A34;--onink:#12161C;--glass:rgba(255,255,255,.08);--glass2:rgba(255,255,255,.16);--glass-line:rgba(255,255,255,.16);--glass-sh:rgba(0,0,0,.35);color-scheme:dark}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%;background:var(--ground);font-family:"Noto Sans KR","Pretendard",-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo",sans-serif;color:var(--ink2);letter-spacing:-.01em}
+button{font:inherit;color:inherit;letter-spacing:inherit}
+.app{display:grid;grid-template-columns:260px 1fr;height:100%;min-height:560px;background:var(--ground)}
+.grp{display:contents}
+.side{background:transparent;border-right:1px solid rgba(14,26,43,.07);padding:24px 16px;overflow:auto;display:flex;flex-direction:column;gap:20px}
+#list{display:flex;flex-direction:column;gap:8px}
+.sc{display:block;width:100%;text-align:center;white-space:nowrap;background:var(--glass);-webkit-backdrop-filter:blur(24px) saturate(180%);backdrop-filter:blur(24px) saturate(180%);border:1px solid var(--glass-line);border-radius:16px;padding:15px 18px;cursor:pointer;transition:background .25s,transform .25s,box-shadow .25s;font-size:15px;font-weight:500;line-height:1.35;color:var(--ink2);box-shadow:inset 0 1px 0 rgba(255,255,255,.9),0 1px 2px rgba(14,26,43,.06),0 8px 24px var(--glass-sh)}
+.sc:hover{background:var(--glass2);transform:translateY(-1px);box-shadow:inset 0 1px 0 rgba(255,255,255,.8),0 12px 28px var(--glass-sh)}
+.sc:active{transform:scale(.985)}
+.sc.on{background:var(--glass2);border-color:rgba(14,26,43,.22);box-shadow:inset 0 1px 0 #fff,0 0 0 1px rgba(14,26,43,.1),0 12px 30px var(--glass-sh);font-weight:600}
+.ctl{display:flex;gap:8px;flex-wrap:wrap;margin-top:auto}
+.ctl button{border:1px solid var(--glass-line);background:var(--glass);-webkit-backdrop-filter:blur(20px) saturate(180%);backdrop-filter:blur(20px) saturate(180%);border-radius:999px;padding:8px 15px;font-size:13px;font-weight:500;color:var(--ink2);cursor:pointer;transition:background .25s,transform .25s;box-shadow:inset 0 1px 0 rgba(255,255,255,.65),0 6px 18px var(--glass-sh)}
+.ctl button:hover{background:var(--glass2);transform:translateY(-1px)}
+.ctl button.on{background:rgba(14,26,43,.78);color:#fff;border-color:rgba(255,255,255,.22);box-shadow:inset 0 1px 0 rgba(255,255,255,.25),0 8px 22px rgba(14,26,43,.28)}
+.main{min-width:0;height:100%;position:relative}
+.sw{position:relative;display:none;align-self:flex-start;margin-left:6px;padding:4px;border-radius:999px;background:var(--glass);-webkit-backdrop-filter:blur(22px) saturate(180%);backdrop-filter:blur(22px) saturate(180%);border:1px solid var(--glass-line);box-shadow:inset 0 1px 0 rgba(255,255,255,.65),0 10px 28px var(--glass-sh)}
+.sw.show{display:flex;animation:swin .55s cubic-bezier(.2,.7,.2,1)}
+@keyframes swin{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.sw button{position:relative;z-index:1;border:0;background:none;cursor:pointer;min-width:88px;padding:10px 16px;border-radius:999px;font-size:15px;font-weight:600;color:var(--ink3);transition:color .35s}
+.sw button.on{color:#fff}
+.sw .thumb{position:absolute;top:4px;bottom:4px;left:4px;width:calc(50% - 4px);border-radius:999px;background:linear-gradient(180deg,rgba(40,56,84,.92),rgba(14,26,43,.92));transition:transform .55s cubic-bezier(.2,.8,.2,1),background .4s,opacity .35s;box-shadow:inset 0 1px 0 rgba(255,255,255,.28),0 6px 16px rgba(14,26,43,.3)}
+.sw.none .thumb{opacity:0}
+.sw .thumb{opacity:1}
+.sw.b .thumb{transform:translateX(100%)}
+.stage{height:100%;display:flex;justify-content:center;align-items:center;gap:44px;padding:10px 20px}
+.col{display:grid;grid-template-columns:auto auto;column-gap:26px;align-items:center;flex:none;transition:transform .6s cubic-bezier(.2,.7,.2,1),filter .6s,opacity .6s}
+.stage.seq .col{transform:scale(.92);filter:brightness(.45);opacity:.9}
+.stage.seq .col.act{transform:scale(1.06);filter:none;opacity:1}
+.col .tag{grid-row:1;grid-column:2;justify-self:center}
+.col.new .tag{grid-column:1}
+.col .phw{grid-row:2;grid-column:2}
+.col.new .phw{grid-column:1}
+.col .note{grid-row:2;grid-column:1}
+.col.new .note{grid-column:2}
+.tag{margin:0 0 8px;font-size:14px;font-weight:600;color:var(--ink3)}
+.tag.new{color:var(--ink2)}
+.phw{position:relative;width:calc(430px*var(--k));height:calc(932px*var(--k));border-radius:calc(46px*var(--k));background:#000;box-shadow:0 2px 14px rgba(14,26,43,.18);overflow:hidden}
+.phw iframe{position:absolute;left:0;top:0;width:430px;height:932px;border:0;transform:scale(var(--k));transform-origin:0 0;background:#fff}
+.phw .shield{position:absolute;inset:0;z-index:2;display:none}
+.stage.seq .col:not(.act) .shield{display:block;cursor:pointer}
+.stage.proto .col:not(.act):hover{filter:brightness(.6)}
+/* 켜지는 연출: 어두웠던 화면이 밝아지며 살짝 튀어오르고, 테두리 빛이 퍼짐 */
+.col.pop .phw{animation:pon .9s cubic-bezier(.2,.8,.2,1)}
+.col.pop .phw::after{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;z-index:4;animation:ring .9s ease-out forwards}
+
+@keyframes pon{0%{filter:brightness(.35)}45%{filter:brightness(1.18)}100%{filter:brightness(1)}}
+@keyframes ring{0%{box-shadow:inset 0 0 0 0 rgba(var(--rc,14,26,43),.0),0 0 0 0 rgba(var(--rc,14,26,43),.5)}100%{box-shadow:inset 0 0 0 0 rgba(var(--rc,14,26,43),0),0 0 0 26px rgba(var(--rc,14,26,43),0)}}
+.phw.run .shield{display:block}
+.note{width:var(--nw,260px);opacity:0;transform:translateY(6px);transition:opacity .5s,transform .5s}
+.note.on{opacity:1;transform:none}
+.stage.proto .note{display:none}
+.stage.proto .col{column-gap:0}
+.note i{display:inline-block;margin-bottom:10px!important;font-style:normal;font-size:12px;font-weight:600;padding:2px 9px;border-radius:999px;border:1px solid var(--rule);color:var(--ink3);margin-bottom:6px}
+.note.new i{background:var(--ink2);border-color:var(--ink2);color:var(--onink)}
+.note b,.note span{word-break:keep-all;text-wrap:balance}
+.note b{display:block;font-size:22px;line-height:1.3;font-weight:600;color:var(--ink2);letter-spacing:-.02em}
+.note span{display:block;margin-top:6px;font-size:15.5px;line-height:1.5;color:var(--ink3)}
+.na{display:none}
+.stage.stack .col{display:flex;flex-direction:column;align-items:center}
+.stage.stack .tag{margin:0 0 6px}
+.stage.stack .note{width:calc(430px*var(--k));min-width:300px;height:112px;margin-top:12px}
+.stage.stack .note b{font-size:max(17px,calc(24px*var(--k)))}
+.stage.stack .note span{font-size:max(13.5px,calc(17px*var(--k)))}
+@media (max-width:900px){.app{grid-template-columns:1fr;height:auto}.side{border-right:0;border-bottom:1px solid var(--line)}.main{height:auto}.stage{flex-wrap:wrap}}
+</style>
+</head>
+<body>
+<div class="app">
+  <aside class="side">
+    <div id="list"></div>
+    <div class="sw none" id="sw"><i class="thumb"></i><button data-s="A">As-Is</button><button data-s="B">To-Be</button></div>
+    <div class="ctl">
+      <button id="bReset">처음으로</button>
+      <button id="bHand">프로토타입</button>
+    </div>
+  </aside>
+  <section class="main">
+    <div class="stage" id="stage">
+      <div class="col" id="cA">
+        <div class="tag">As-Is</div>
+        <div class="phw"><iframe id="fA" src="asis.html" title="As-Is"></iframe><div class="shield"></div><div class="na"></div></div>
+        <div class="note" id="nA"></div>
+      </div>
+      <div class="col new" id="cB">
+        <div class="tag new">To-Be</div>
+        <div class="phw"><iframe id="fB" src="tobe.html" title="To-Be"></iframe><div class="shield"></div><div class="na"></div></div>
+        <div class="note" id="nB"></div>
+      </div>
+    </div>
+  </section>
+  <div id="aux" hidden>
+    <b id="sTitle"></b><b id="sGoal"></b><b id="sum"></b>
+    <b id="capA"></b><b id="capB"></b>
+    <b id="tA">0</b><b id="sA">0</b><b id="mA">0.0</b><b id="tB">0</b><b id="sB">0</b><b id="mB">0.0</b>
+  </div>
+</div>
+<script>
+// 비교 화면 시나리오: 같은 과업을 기존(As-Is) · 개선(To-Be) 화면이 각자 수행하는 동작 목록
+// 과업: 이번 주 토요일 저녁 8시 이후, 잠실(월드타워)에서 친구와 평소와 다른 상영관 예매
+// 동작(acts)은 bridge.js 규약: tap · scroll · swipe · type · wait · js. 선택자 in: 'top'(맨 위 화면) · '#sheet'(예매 시트)
+// js 동작은 '준비'용(누름으로 세지 않음): 두 화면이 같은 출발 상태에서 시작하게 맞춘다
+const T=(q,o)=>Object.assign({t:'tap',q},o||{});
+const SAT={t:'tap',fn:'sat',in:'#sheet'};
+const H20={t:'tap',q:'[data-h="20"]',in:'#sheet'};
+const SPECIAL={t:'tap',q:'[data-f="special"]',in:'#sheet'};
+const W=ms=>({t:'wait',ms});
+const JS=f=>({t:'js',f});
+// 월드타워 예매 시트를 연 상태
+const OPEN_WT=JS("P.openBooking({theater:'월드타워'})");
+// 토요일 월드타워 수퍼플렉스 회차를 정해 인원 화면을 연 상태(인원 0명)
+const OPEN_PEOPLE=JS(`const A=P.schedOf('월드타워'),dt=Object.keys(A).sort().find(id=>new Date(id+'T00:00:00').getDay()===6)||Object.keys(A).sort()[3];
+  const L=A[dt]||[];const s=L.find(x=>x.spl==='SPLEX'&&x.s>='19:30'&&P.layoutOf(x))||L.find(x=>x.spl==='SPLEX'&&P.layoutOf(x))||L.find(x=>P.layoutOf(x));
+  P.openSession(s.id)`);
+// 예매 시트가 뒤에 깔린 채 인원 화면이 열린 상태(실제 앱처럼 뒤로 가면 시트로 돌아옴)
+const OPEN_PEOPLE_SHEET=JS(`const A=P.schedOf('월드타워'),dt=Object.keys(A).sort().find(id=>new Date(id+'T00:00:00').getDay()===6)||Object.keys(A).sort()[3];
+  const L=A[dt]||[];const s=L.find(x=>x.spl==='SPLEX'&&x.s>='19:30'&&P.layoutOf(x))||L.find(x=>x.spl==='SPLEX'&&P.layoutOf(x))||L.find(x=>P.layoutOf(x));
+  P.openBooking({theater:'월드타워'});P.BK.date=dt;P.renderBK();setTimeout(()=>P.openSession(s.id),700)`);
+const ADULT2=[T('[data-inc="성인"]',{in:'top'}),T('[data-inc="성인"]',{in:'top'})];
+const GO_SEAT=T('[data-go2seat]',{in:'top'});
+// 영화관 패널에서 월드타워 고르기: 개선 = 검색, 기존 = 지역 목록을 내려 가며 찾기
+const PICK_WT_NEW=slot=>[T(`[data-pick="${slot}"]`,{in:'#sheet'}),{t:'type',q:'#pTh [data-tq]',v:'잠실'},T('#pTh [data-th="월드타워"]')];
+const PICK_WT_OLD=slot=>[T(`[data-pick="${slot}"]`,{in:'#sheet'}),T('#pTh [data-reg="서울"]'),
+  {t:'swipe',q:'#pTh [data-th="가산디지털"]',by:260},W(500),{t:'swipe',q:'#pTh [data-th="가산디지털"]',by:260},W(700),{t:'swipe',q:'#pTh [data-th="가산디지털"]',by:-420},W(500),
+  T('#pTh [data-th="월드타워"]')];
+
+const S={};
+
+// ───── 1순위 특별관 탐색 ─────
+S.special={f:'F-01 · F-02',title:'특별관 차이 알아보기',summary:'스페셜 칩과 정보 시트로 예매 화면 안에서 바로 비교',
+  goal:'토요일 저녁 월드타워의 스페셜관이 서로 어떻게 다른지 알아본다.',
+  asis:{steps:[
+    {cap:'월드타워 예매 시트에서 시작합니다.',acts:[OPEN_WT,W(900)]},
+    {cap:'토요일, 스페셜, 저녁 8시를 고르면 회차 카드에 작은 로고만 나옵니다.',acts:[SAT,SPECIAL,H20,W(800)]},
+    {cap:'차이를 알려면 시트를 닫고 메뉴 ▸ 스페셜관으로 나가야 합니다.',acts:[T('[data-close]',{in:'#sheet'}),T('[data-tab="mn"]'),T('[data-mgo="page:sp_list"]'),W(500)]},
+    {cap:'스페셜관 소개에서 하나를 열어 읽습니다. 예매 화면에서 고른 조건은 여기서 이어지지 않습니다.',acts:[T('[data-go="page:sp_2"]',{in:'top'}),{t:'swipe',q:'[data-go="back"]',in:'top',ax:'y',by:500,opt:true},W(900)]}]},
+  tobe:{steps:[
+    {cap:'월드타워 예매 시트에서 시작합니다.',acts:[OPEN_WT,W(900)]},
+    {cap:'토요일, 스페셜, 저녁 8시를 고릅니다.',acts:[SAT,SPECIAL,H20,W(800)]},
+    {cap:'스페셜관 종류 칩을 고르면 그 관 회차만 남습니다.',acts:[T('[data-spk]:not([data-spk=""])',{in:'#sheet',i:1}),W(700)]},
+    {cap:'정보 버튼으로 화면 · 사운드 · 좌석 · 요금을 같은 화면에서 확인하고, 비교하기로 다른 관과 나란히 봅니다.',acts:[T('[data-spinfo]',{in:'#sheet'}),W(700),T('[data-spcm]'),W(900)]},
+    {cap:'시트를 닫으면 고르던 예매 화면 그대로입니다.',acts:[T('[data-spx]'),W(500)]}]}};
+
+S.view={f:'F-07',title:'좌석 시야 미리 보기',summary:'고른 좌석에서 스크린이 어떻게 보일지 3D로 확인',
+  goal:'특별관 좌석을 고르면서 그 자리에서 스크린이 어떻게 보이는지 확인한다.',
+  asis:{na:'기존 앱에는 좌석 시야를 미리 보는 기능이 없어요',steps:[
+    {cap:'수퍼플렉스 회차의 인원 화면에서 시작합니다.',acts:[OPEN_PEOPLE,W(900)]},
+    {cap:'성인 2명을 고르고 좌석 선택으로 넘어갑니다.',acts:[...ADULT2,GO_SEAT,W(1200)]},
+    {cap:'좌석 번호만 보이고, 그 자리에서의 시야는 알 수 없습니다.',acts:[{t:'tap',fn:'seatMid',in:'top'},W(900)]}]},
+  tobe:{steps:[
+    {cap:'수퍼플렉스 회차의 인원 화면에서 시작합니다.',acts:[OPEN_PEOPLE,W(900)]},
+    {cap:'성인 2명을 고르고 좌석 선택으로 넘어갑니다.',acts:[...ADULT2,GO_SEAT,W(1200)]},
+    {cap:'좌석을 고르고 좌석 시야 보기를 누릅니다.',acts:[{t:'tap',fn:'seatMid',in:'top'},W(500),T('[data-view]',{in:'top'}),W(3000)]},
+    {cap:'고개를 좌우로 돌려 두리번거리며 주변까지 둘러봅니다.',acts:[{t:'look',q:'.vw',in:'top',path:[150,-150,0]},W(500)]},
+    {cap:'앞 열 · 뒤 열로 옮겨 가며 시야 차이를 봅니다.',acts:[T('[data-vr="-1"]',{in:'top',opt:true}),W(1500),T('[data-vr="1"]',{in:'top',opt:true}),W(1500)]},
+    {cap:'같은 영화관의 다른 스페셜관 배치도로 바꿔서 비교합니다.',acts:[T('[data-vm2]',{in:'top',opt:true}),W(1200),T('[data-vs]',{in:'top',opt:true,i:1}),W(2500)]}]}};
+
+// ───── 2순위 영화 탐색 ─────
+S.search={f:'F-03',title:'검색으로 바로 찾기',summary:'홈 검색창에 영화와 지역을 같이 입력',
+  goal:'치이카와를 잠실에서 토요일 저녁에 볼 수 있는 회차까지 찾아간다.',
+  asis:{steps:[
+    {cap:'홈에는 검색창이 없어서 인기 줄의 포스터에서 영화를 고릅니다.',acts:[W(600),T('[data-go^="book:극장판 치이카와"]',{in:'top'}),W(1000)]},
+    {cap:'예매 시트에는 평촌이 먼저 잡혀 있어서 영화관을 바꿔야 합니다. 서울 목록에는 ‘잠실’이 없습니다.',acts:PICK_WT_OLD(1)},
+    {cap:'토요일과 저녁 8시를 고릅니다.',acts:[SAT,H20,W(900)]}]},
+  tobe:{steps:[
+    {cap:'홈 검색창을 누릅니다.',acts:[W(600),T('.hsr',{in:'top'}),W(700)]},
+    {cap:'영화와 지역을 한 번에 입력합니다.',acts:[{t:'type',q:'[data-tq]',in:'top',v:'치이카와 잠실'},W(800)]},
+    {cap:'결과에서 다른 날짜 보기를 누르면 월드타워와 영화가 정해진 예매 시트가 열립니다.',acts:[T('[data-srdate]',{in:'top'}),W(900)]},
+    {cap:'토요일과 저녁 8시를 고릅니다.',acts:[SAT,H20,W(900)]}]}};
+
+S.purpose={f:'F-06',title:'관람 목적으로 찾기',summary:'홈의 분류 알약으로 스페셜관 상영 영화 바로 보기',
+  goal:'스페셜관에서 볼 수 있는 영화를 찾는다.',
+  asis:{steps:[
+    {cap:'홈에서는 ‘지금 인기있는’ 줄만 보입니다. 옆으로 넘기며 찾습니다.',acts:[W(600),{t:'swipe',q:'[data-go^="book:"]',in:'top',ax:'x',by:320},W(500),{t:'swipe',q:'[data-go^="book:"]',in:'top',ax:'x',by:320},W(700)]},
+    {cap:'분류가 없어 메뉴 ▸ 영화로 나가서 탭을 하나씩 열어 봅니다.',acts:[T('[data-tab="mn"]'),T('[data-mgo="page:mv_home"]'),W(500)]},
+    {cap:'목록을 아래로 넘기며 스페셜관 영화를 찾습니다.',acts:[{t:'swipe',q:'[data-go="back"]',in:'top',ax:'y',by:700,opt:true},W(400)]}]},
+  tobe:{steps:[
+    {cap:'홈의 분류 알약에서 ‘스페셜관’을 누릅니다.',acts:[W(600),T('[data-hp="스페셜관"]',{in:'top'}),W(900)]},
+    {cap:'인기 줄이 그 분류로 바뀝니다. 더보기로 영화 찾기 화면을 엽니다.',acts:[T('.hpmore',{in:'top'}),W(1000)]},
+    {cap:'스페셜관 탭에서 관 종류별 상영 영화를 한눈에 봅니다.',acts:[W(900)]}]}};
+
+// ───── 3순위 영화관 탐색 ─────
+S.theater={f:'F-04',title:'지역으로 영화관 찾기',summary:'‘잠실’을 입력하면 월드타워가 나오는 검색',
+  goal:'잠실에 있는 영화관을 찾아 예매 시트에 넣는다.',
+  asis:{steps:[
+    {cap:'예매 시트에서 영화관 칸을 눌러 목록을 엽니다.',acts:[T('[data-tab="bk"]'),W(900)]},
+    {cap:'지역 목록에서 서울을 열고 아래로 훑어 봅니다. ‘잠실’이라는 이름은 없습니다.',acts:PICK_WT_OLD(1)},
+    {cap:'월드타워를 찾으면 시간표가 바뀝니다.',acts:[W(900)]}]},
+  tobe:{steps:[
+    {cap:'예매 시트에서 영화관 칸을 눌러 패널을 엽니다.',acts:[T('[data-tab="bk"]'),W(900),T('[data-pick="1"]',{in:'#sheet'}),W(600)]},
+    {cap:'검색창에 지역 이름을 입력하면 월드타워가 맨 위에 나옵니다.',acts:[{t:'type',q:'#pTh [data-tq]',v:'잠실'},W(600)]},
+    {cap:'누르면 시간표가 월드타워로 바뀝니다.',acts:[T('#pTh [data-th="월드타워"]'),W(900)]}]}};
+
+S.compare={f:'F-05',title:'영화관 나란히 비교',summary:'두 영화관의 회차를 한 화면에서 비교',
+  goal:'평촌과 월드타워의 토요일 저녁 회차를 비교한다.',
+  asis:{steps:[
+    {cap:'평촌이 선택된 예매 시트에서 시작합니다.',acts:[JS("P.openBooking({theater:'평촌(범계역)'})"),W(900)]},
+    {cap:'둘째 칸에 월드타워를 넣습니다.',acts:PICK_WT_OLD(1)},
+    {cap:'토요일 저녁 8시를 고릅니다.',acts:[SAT,H20,W(900)]},
+    {cap:'영화관 칸을 번갈아 눌러 가며 회차를 기억해서 비교합니다.',acts:[T('[data-slot="0"]',{in:'#sheet'}),W(900),T('[data-slot="1"]',{in:'#sheet'}),W(900)]}]},
+  tobe:{steps:[
+    {cap:'평촌이 선택된 예매 시트에서 시작합니다.',acts:[JS("P.openBooking({theater:'평촌(범계역)'})"),W(900)]},
+    {cap:'둘째 칸에 월드타워를 넣습니다.',acts:PICK_WT_NEW(1)},
+    {cap:'토요일 저녁 8시를 고릅니다.',acts:[SAT,H20,W(900)]},
+    {cap:'나란히 보기를 누르면 두 영화관의 회차가 한 화면에 나란히 놓입니다.',acts:[T('[data-cmp]',{in:'#sheet'}),W(1200)]}]}};
+
+S.other={f:'F-05 · R-07',title:'좌석이 없을 때 다른 영화관',summary:'같은 조건으로 다른 영화관을 보고 인원은 그대로',
+  goal:'성인 2명으로 좌석을 고르다가 다른 영화관 회차로 옮겨 간다.',
+  asis:{steps:[
+    {cap:'수퍼플렉스 회차의 인원 화면에서 시작합니다.',acts:[OPEN_PEOPLE_SHEET,W(1800)]},
+    {cap:'성인 2명을 고르고 좌석 선택으로 넘어갑니다.',acts:[...ADULT2,GO_SEAT,W(1200),T('.modal button',{opt:true,i:0}),W(500)]},
+    {cap:'다른 영화관을 보려면 뒤로 가서 영화관을 처음부터 다시 골라야 합니다.',acts:[T('.back',{in:'top'}),W(700),T('.back',{in:'top',opt:true}),W(900)]},
+    {cap:'다른 영화관을 고르면 인원이 0명으로 돌아가 있습니다.',acts:[...PICK_WT_OLD(1).slice(0,2),T('#pTh [data-th="강동"]'),W(900)]}]},
+  tobe:{steps:[
+    {cap:'수퍼플렉스 회차의 인원 화면에서 시작합니다.',acts:[OPEN_PEOPLE_SHEET,W(1800)]},
+    {cap:'성인 2명을 고르고 좌석 선택으로 넘어갑니다.',acts:[...ADULT2,GO_SEAT,W(1200)]},
+    {cap:'좌석 화면에서 다른 영화관 보기를 누릅니다.',acts:[T('[data-other]',{in:'top',opt:true}),W(1000)]},
+    {cap:'같은 영화 · 같은 시간대의 가까운 영화관 회차가 바로 나옵니다.',acts:[T('.otsl [data-ses]',{opt:true,i:0}),W(1200)]},
+    {cap:'그 회차의 좌석 화면으로 가며 인원 2명이 그대로 유지됩니다.',acts:[W(1000)]}]}};
+
+// 문제 지점(기존) · 바뀐 영역(개선)을 연하게 표시: 단계 번호(0부터) → 그 단계가 시작될 때 건다. 표시는 요소를 따라다니고 요소가 나타나는 즉시 뜬다
+const MK=(q,o)=>Object.assign({t:'mark',q},o||{});
+const MR=r=>({t:'mark',rect:r});
+const MARKS={
+  special:{asis:{1:[MK('#sheet .card[data-ses] .sp',{all:1,max:3,pad:4})],2:[MK('[data-mgo="page:sp_list"]',{pad:4})],3:[MK('[data-go="page:sp_2"]',{in:'top',pad:2})]},
+           tobe:{2:[MK('#sheet [data-spk]',{up:1,pad:4})],3:[MK('#sheet [data-spinfo]',{pad:4}),MK('.spcm',{pad:2})]}},
+  view:{asis:{2:[MK('.st',{in:'top',union:1,pad:6})]},
+        tobe:{2:[MK('[data-view]',{in:'top',pad:4}),MK('.vstage',{in:'top',pad:0})],4:[MK('.vmove',{in:'top',pad:4})],5:[MK('.vchips',{in:'top',pad:4})]}},
+  search:{asis:{1:[MK('#sheet [data-slot="0"]',{pad:3})]},
+          tobe:{0:[MK('.hsr',{in:'top',pad:4})],1:[MK('.srbox',{in:'top',pad:4})],2:[MK('#sheet .slots',{pad:2}),MK('#sheet .mv-h',{pad:2})]}},
+  purpose:{asis:{0:[MK('[data-go^="book:"]',{in:'top',union:1,pad:6})],1:[MK('[data-tab="mn"]',{pad:4}),MK('[data-mgo="page:mv_home"]',{pad:4})]},
+           tobe:{0:[MK('.hpt',{in:'top',pad:3})],1:[MK('.hpmore',{in:'top',pad:6})],2:[MR([14,326,402,450])]}},
+  theater:{asis:{1:[MK('#pTh .pb',{pad:0})]},tobe:{0:[MK('#pTh .tsch',{pad:3})],1:[MK('#pTh [data-th="월드타워"]',{pad:6})]}},
+  compare:{asis:{3:[MK('#sheet .slots',{pad:2})]},tobe:{2:[MK('#sheet [data-cmp]',{pad:4})],3:[MK('#sheet .cmpc',{all:1,max:2,pad:4})]}},
+  other:{asis:{2:[MK('.back',{in:'top',pad:4})]},tobe:{2:[MK('[data-other]',{in:'top',pad:4}),MK('.otsl',{pad:4})],4:[MR([14,784,402,44])]}}};
+Object.keys(MARKS).forEach(id=>['asis','tobe'].forEach(side=>{const m=MARKS[id][side],st=S[id][side].steps;
+  Object.keys(m).forEach(i=>{if(st[i])st[i].acts=m[i].concat(st[i].acts)})}));
+
+window.SCENARIOS={
+  groups:[
+    {name:'1순위 · 특별관 탐색',items:['special','view']},
+    {name:'2순위 · 영화 탐색',items:['search','purpose']},
+    {name:'3순위 · 영화관 탐색',items:['theater','compare','other']}],
+  byId:S};
+
+(function(){
+const $=s=>document.querySelector(s);
+const sides={A:{note:$('#nA'),f:$('#fA'),cap:$('#capA'),t:$('#tA'),s:$('#sA'),m:$('#mA'),box:$('#cA .phw'),na:$('#cA .na'),ns:'asis'},
+             B:{note:$('#nB'),f:$('#fB'),cap:$('#capB'),t:$('#tB'),s:$('#sB'),m:$('#mB'),box:$('#cB .phw'),na:$('#cB .na'),ns:'tobe'}};
+let FAST=false,CUR=null,TOKEN=0,HAND=false;
+const sleep=ms=>new Promise(r=>setTimeout(r,ms));
+// 화면 크기에 맞춰 폰 배율
+function fit(){const st=$('#stage'),pr=st.classList.contains('proto'),W=st.clientWidth,H=st.clientHeight,G=1.06;
+  // 글이 폰 옆에 들어갈 만큼 가로가 넉넉하면 옆 배치(폰이 세로를 가득 채움), 아니면 폰 아래 배치
+  const kH=(H-20-34)/932/G,fixed=40+44+(pr?0:2*26),NW=pr?0:230,kW=(W-fixed-2*NW)/(2*430*G),ks=Math.min(2,kH,kW);
+  if(ks>=.62){st.classList.remove('stack');st.style.setProperty('--k',ks);st.style.setProperty('--nw',Math.min(330,(W-fixed-2*430*G*ks)/2)+'px')}
+  else{st.classList.add('stack');const h=H-(pr?36:36+124+20),w=W-40-44;st.style.setProperty('--k',Math.max(.3,Math.min(2,h/932/1.07,(w/2)/430/1.07)))}}
+addEventListener('resize',fit);
+// 발표용 문구: 기존의 불편 · 개선한 점
+const TXT={
+special:[['차이를 알려면 예매를 떠나야 해요','회차 카드엔 로고뿐이에요. 비교하려면 시트를 닫고 메뉴 ▸ 스페셜관으로 나가야 하고, 고른 조건은 이어지지 않아요.'],['예매 화면 안에서 바로 비교해요','칩으로 관을 고르고, 정보에서 화면·사운드·좌석·요금을 확인해 다른 관과 나란히 봐요. 닫으면 그대로 돌아와요.']],
+view:[['그 자리에서 어떻게 보일지 몰라요','좌석 번호만 보여서, 시야는 앉아 보기 전에는 알 수 없어요.'],['고른 자리에서 스크린을 3D로 미리 봐요','앞뒤 열로 옮겨 보고, 같은 영화관의 다른 관과 비교해서 고를 수 있어요.']],
+search:[['영화관부터 다시 골라야 해요','홈에 검색창이 없고, 예매 시트엔 엉뚱한 영화관이 잡혀 있어요. 서울 목록엔 ‘잠실’이라는 이름도 없어요.'],['영화와 지역을 한 번에 검색해요','‘치이카와 잠실’을 입력하면 영화관과 영화가 정해진 채로 예매 시트가 열려요.']],
+purpose:[['목적별로 찾는 길이 없어요','인기 줄만 옆으로 넘기다 메뉴로 나가서, 탭을 하나씩 열며 스페셜관 영화를 찾아요.'],['분류 한 번으로 바로 찾아요','홈에서 ‘스페셜관’을 누르면 관 종류별 상영 영화가 한눈에 보여요.']],
+theater:[['‘잠실’로는 영화관을 찾을 수 없어요','지역 목록을 열어 서울을 훑어야 하고, ‘월드타워’라는 이름을 알아야 찾아요.'],['지역 이름만 입력하면 돼요','‘잠실’을 입력하면 월드타워가 맨 위에 나와요.']],
+compare:[['시간표를 기억해서 비교해야 해요','영화관 칸을 번갈아 눌러 가며 두 곳의 회차를 머릿속으로 비교해요.'],['두 영화관을 한 화면에 나란히 봐요','나란히 보기 한 번이면 두 곳의 회차가 같이 놓여요.']],
+other:[['다른 영화관을 보면 처음부터예요','뒤로 가서 영화관을 다시 고르면 인원이 0명으로 돌아가 있어요.'],['같은 조건으로 바로 옮겨 가요','좌석 화면에서 ‘다른 영화관’을 누르면 같은 영화·시간대 회차가 나오고, 인원 2명도 그대로예요.']]};
+function showNote(S,id,k){const t=TXT[id][k];S.note.innerHTML=`<i>${k?'개선한 점':'불편한 점'}</i><b>${t[0]}</b><span>${t[1]}</span>`;S.note.classList.toggle('new',!!k);S.note.classList.add('on')}
+// 목록
+const L=$('#list');
+SCENARIOS.groups.forEach(g=>{const d=document.createElement('div');d.className='grp';
+  g.items.forEach(id=>{const s=SCENARIOS.byId[id];const b=document.createElement('button');b.className='sc';b.dataset.id=id;
+    b.textContent=s.title;b.onclick=()=>run(id);d.appendChild(b)});L.appendChild(d)});
+// 메시지: 완료 · 개수 · 오류
+const pending={};
+addEventListener('message',e=>{const m=e.data;if(!m||m.ns!=='cmp')return;const S=m.side==='asis'?sides.A:sides.B;
+  if(m.ev==='count'){S.t.textContent=m.taps;S.s.textContent=m.scrolls}
+  else if(m.ev==='done'&&pending[m.side+m.id]){pending[m.side+m.id]();delete pending[m.side+m.id]}
+  else if(m.ev==='err'){console.warn('cmp',m.side,m.msg);(window.__err=window.__err||[]).push(m.side+': '+m.msg)}
+  else if(m.ev==='ready'){S.ready=true}});
+function reload(S){S.ready=false;S.t.textContent=S.s.textContent='0';S.m.textContent='0.0';S.cap.innerHTML='';S.na.classList.remove('on');S.note.classList.remove('on');const u=S.ns+'.html';S.f.src='about:blank';return new Promise(res=>{setTimeout(()=>{S.f.src=u;const w=setInterval(()=>{if(S.ready){clearInterval(w);res()}},60);setTimeout(()=>{clearInterval(w);res()},9000)},40)})}
+function post(S,o){S.f.contentWindow.postMessage(Object.assign({ns:'cmp'},o),'*')}
+async function runSide(S,spec,token,key){
+  const t0=performance.now();let timer=setInterval(()=>{S.m.textContent=((performance.now()-t0)/1000).toFixed(1)},100);
+  showNote(S,key,S===sides.B?1:0);
+  for(let i=0;i<spec.steps.length;i++){
+    if(token!==TOKEN)break;const st=spec.steps[i];
+    S.cap.innerHTML=`<b>${i+1}.</b> ${st.cap}`;
+    const id=key+'_'+i;await new Promise(res=>{pending[S.ns+id]=res;post(S,{cmd:'run',id,acts:st.acts,fast:FAST});setTimeout(()=>{if(pending[S.ns+id]){delete pending[S.ns+id];res()}},30000)});
+    await sleep(FAST?80:380)}
+  clearInterval(timer);if(token===TOKEN)S.m.textContent=((performance.now()-t0)/1000).toFixed(1);
+}
+async function run(id){
+  const sc=SCENARIOS.byId[id];const token=++TOKEN;CUR=id;HAND=false;$('#bHand').classList.remove('on');protoOff();
+  document.querySelectorAll('.sc').forEach(b=>b.classList.toggle('on',b.dataset.id===id));
+  $('#sTitle').textContent=sc.title;$('#sGoal').textContent=sc.goal;$('#sum').innerHTML='';
+  await Promise.all([reload(sides.A),reload(sides.B)]);if(token!==TOKEN)return;
+  await sleep(FAST?200:700);
+  [sides.A,sides.B].forEach(S=>S.box.classList.add('run'));
+  const st=$('#stage'),cA=$('#cA'),cB=$('#cB');st.classList.add('seq');
+  cA.classList.add('act');cB.classList.remove('act');
+  await runSide(sides.A,sc.asis,token,id);if(token!==TOKEN)return;
+  await sleep(FAST?200:900);
+  cA.classList.remove('act');cB.classList.add('act');await sleep(FAST?200:900);
+  await runSide(sides.B,sc.tobe,token,id);
+  if(token!==TOKEN)return;
+  await sleep(FAST?100:600);st.classList.remove('seq');cA.classList.remove('act');cB.classList.remove('act');
+  [sides.A,sides.B].forEach(S=>S.box.classList.remove('run'));
+  const a=[sides.A.t.textContent,sides.A.s.textContent,sides.A.m.textContent],b=[sides.B.t.textContent,sides.B.s.textContent,sides.B.m.textContent];
+  $('#sum').innerHTML=sc.asis.na?`개선 화면 <b>누름 ${b[0]} · 넘김 ${b[1]} · ${b[2]}초</b>`:`기존 <b>누름 ${a[0]} · 넘김 ${a[1]} · ${a[2]}초</b> → 개선 <b>누름 ${b[0]} · 넘김 ${b[1]} · ${b[2]}초</b>`;
+  window.__done=id;
+}
+// 프로토타입 모드: 두 화면을 어둡게 두고, As-Is / To-Be 버튼을 누르면 그 화면이 켜져서 직접 만질 수 있음
+const st0=$('#stage'),sw=$('#sw'),cA0=$('#cA'),cB0=$('#cB');
+function protoOff(){st0.classList.remove('proto','seq');fit();cA0.classList.remove('act','pop');cB0.classList.remove('act','pop');sw.classList.remove('show','b');sw.classList.add('none');sw.querySelectorAll('button').forEach(b=>b.classList.remove('on'))}
+function setAct(k){const on=k==='A'?cA0:cB0,off=k==='A'?cB0:cA0;if(on.classList.contains('act'))return;
+  off.classList.remove('act','pop');on.classList.add('act');on.classList.remove('pop');void on.offsetWidth;on.classList.add('pop');
+  const th=sw.querySelector('.thumb'),first=sw.classList.contains('none');if(first)th.style.transition='none';
+  sw.classList.toggle('b',k==='B');if(first){void th.offsetWidth;th.style.transition='';sw.classList.remove('none')}
+sw.querySelectorAll('button').forEach(b=>b.classList.toggle('on',b.dataset.s===k));
+  [sides.A,sides.B].forEach(S=>S.box.classList.remove('run'))}
+sw.querySelectorAll('button').forEach(b=>b.onclick=()=>setAct(b.dataset.s));
+document.querySelectorAll('.shield').forEach((sh,i)=>sh.addEventListener('click',()=>{if(st0.classList.contains('proto'))setAct(i?'B':'A')}));
+async function protoOn(){TOKEN++;CUR=null;window.__done=null;HAND=true;
+  document.querySelectorAll('.sc').forEach(b=>b.classList.remove('on'));$('#bHand').classList.add('on');
+  [sides.A,sides.B].forEach(S=>S.box.classList.remove('run'));
+  cA0.classList.remove('act','pop');cB0.classList.remove('act','pop');st0.classList.add('seq','proto');fit();sw.classList.add('show','none');sw.classList.remove('b');sw.querySelectorAll('button').forEach(b=>b.classList.remove('on'));
+  await Promise.all([reload(sides.A),reload(sides.B)])}
+$('#bReset').onclick=async()=>{TOKEN++;CUR=null;window.__done=null;HAND=false;$('#bHand').classList.remove('on');protoOff();document.querySelectorAll('.sc').forEach(b=>b.classList.remove('on'));
+  [sides.A,sides.B].forEach(S=>S.box.classList.remove('run'));
+  await Promise.all([reload(sides.A),reload(sides.B)])};
+$('#bHand').onclick=()=>{HAND?(()=>{HAND=false;$('#bHand').classList.remove('on');protoOff()})():protoOn()};
+fit();
+window.__run=run;
+})();
+</script>
+</body>
+</html>

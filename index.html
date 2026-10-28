@@ -36,8 +36,12 @@ button{font:inherit;color:inherit;letter-spacing:inherit}
 .sw.b .thumb{transform:translateX(100%)}
 .stage{height:100%;display:flex;justify-content:center;align-items:center;gap:44px;padding:10px 20px}
 .col{display:grid;grid-template-columns:auto auto;column-gap:26px;align-items:center;flex:none;transition:transform .6s cubic-bezier(.2,.7,.2,1),filter .6s,opacity .6s}
-.stage.seq .col{transform:scale(.92);filter:brightness(.45);opacity:.9}
-.stage.seq .col.act{transform:scale(1.06);filter:none;opacity:1}
+.stage.seq .col{transform:scale(.92)}
+.stage.seq .col:not(.act) .phw{filter:brightness(.45) saturate(.8)}
+.stage.seq .col:not(.act) .tag,.stage.seq .col:not(.act) .note.on{opacity:.28}
+.phw{transition:filter .6s,box-shadow .6s}
+.tag{transition:opacity .6s}
+.stage.seq .col.act{transform:scale(1.06)}
 .col .tag{grid-row:1;grid-column:2;justify-self:center}
 .col.new .tag{grid-column:1}
 .col .phw{grid-row:2;grid-column:2}
@@ -50,7 +54,7 @@ button{font:inherit;color:inherit;letter-spacing:inherit}
 .phw iframe{position:absolute;left:0;top:0;width:430px;height:932px;border:0;transform:scale(var(--k));transform-origin:0 0;background:#fff}
 .phw .shield{position:absolute;inset:0;z-index:2;display:none}
 .stage.seq .col:not(.act) .shield{display:block;cursor:pointer}
-.stage.proto .col:not(.act):hover{filter:brightness(.6)}
+.stage.proto .col:not(.act):hover .phw{filter:brightness(.65)}
 /* 켜지는 연출: 어두웠던 화면이 밝아지며 살짝 튀어오르고, 테두리 빛이 퍼짐 */
 .col.pop .phw{animation:pon .9s cubic-bezier(.2,.8,.2,1)}
 .col.pop .phw::after{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;z-index:4;animation:ring .9s ease-out forwards}
